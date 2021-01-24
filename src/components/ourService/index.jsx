@@ -65,7 +65,10 @@ export function OurSerivce(props) {
         <Title>{title}</Title>
         <Details>{description}</Details>
       </DescriptionContainer>
-      <ServiceImg src={imgUrl} />
+      {
+        (imgUrl != null) ?  <ServiceImg src={imgUrl} /> : null
+      }
+      
     </ServiceContainer>
   );
 }

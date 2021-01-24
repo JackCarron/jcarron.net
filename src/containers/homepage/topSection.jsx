@@ -9,6 +9,7 @@ import { Logo } from "../../components/logo";
 import { Marginer } from "../../components/marginer";
 import { Navbar } from "../../components/navbar";
 import theme from "../../theme"
+import '../../assets/css/typewriter.css';
 
 const TopContainer = styled.div`
   width: 100%;
@@ -38,11 +39,14 @@ const MotivationalText = styled.h1`
 
 const DownArrowContainer = styled.div`
   position: absolute;
-  bottom: 25px;
+  bottom: 20%;
   left: 50%;
   transform: translateX(-50%);
 `;
 
+const TypeWriter = styled.p`
+  font-size: 18px;
+`
 export function TopSection(props) {
   const scrollToNextSection = () => {
     scroller.scrollTo("servicesSection", { smooth: true, duration: 1500 });
@@ -55,11 +59,13 @@ export function TopSection(props) {
           <Navbar />
           <Marginer direction="vertical" margin="8em" />
           <Logo />
-          <Marginer direction="vertical" margin="4em" />
-          <MotivationalText>Jack Carron</MotivationalText>
-          <MotivationalText>Software Engineer</MotivationalText>
+          <div className="css-typing" style={{color: "white"}}>
+            <TypeWriter>Welcome to Jcarron.net.</TypeWriter>            
+          </div>
           <Marginer direction="vertical" margin="2em" />
-          <Button>Contact Me</Button>
+          <div className="css-typing" style={{color: "white"}}>
+            <TypeWriter>Click the arrow below to meet Jack..</TypeWriter>            
+          </div>
           <DownArrowContainer onClick={scrollToNextSection}>
             <DownArrow />
           </DownArrowContainer>

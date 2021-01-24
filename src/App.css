@@ -1,6 +1,8 @@
 .App {
   text-align: center;
-  font-family: "consolas";
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
 }
 
 .App-logo {
@@ -22,8 +24,4 @@
 
 .App-link {
   color: #00fff5;
-}
-
-.neon-text {
-  color: #00fff5
 }

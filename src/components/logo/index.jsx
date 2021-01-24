@@ -15,13 +15,15 @@ const LogoText = styled.div`
   color: ${theme.primary};
   font-weight: 900;
   padding: 10px;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
 `;
 
 const logoDivStyle = {
-  "background-color": theme.nuetral,
-  "border-radius": "10%",
-  "font-family": "Consolas",
-  "text-decoration": "none"
+  "backgroundColor": theme.nuetral,
+  "borderRadius": "10%",
+  "textDecoration": "none"
 };
 
 export function Logo(props) {
@@ -32,9 +34,6 @@ export function Logo(props) {
       <a id="MainLogo" href={window.location.href} style={logoDivStyle}>
       <LogoText inline={inline} small={small}>JC.</LogoText>
       </a>
-      <LogoText inline={inline} small={small}>
-        Jack Carron
-      </LogoText>
     </LogoContainer>
   );
 }
