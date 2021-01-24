@@ -11,23 +11,10 @@ const LogoContainer = styled.div`
 `;
 
 const LogoImg = styled.img`
-  width: 8em;
-  height: 8em;
-
-  ${({ inline }) =>
-    inline &&
-    css`
-      width: 24px;
-      height: 24px;
-      margin-right: 6px;
-    `};
-
-  ${({ small }) =>
-    small &&
-    css`
-      width: 4.8em;
-      height: 4.8em;
-    `};
+  font-color: #00fff5;
+  padding: 20px;
+  width: 100px;
+  height: 100px;
 `;
 
 const LogoText = styled.div`
@@ -36,14 +23,18 @@ const LogoText = styled.div`
     inline ? "18px" : small ? "23px" : "40px"};
   color: ${({ inline }) => (inline ? "#fff" : theme.primary)};
   font-weight: 900;
+  padding: 10px;
 `;
+
 
 export function Logo(props) {
   const { inline, small } = props;
 
+  let logoTxtString = 'J.C.';
+
   return (
     <LogoContainer inline={inline} small={small}>
-      <LogoImg src={JCLogo} inline={inline} small={small} />
+      <LogoText style={{color: "#00fff5"}} inline={inline} small={small}>{logoTxtString}</LogoText>
       <LogoText style={{color: "#00fff5"}}inline={inline} small={small}>
         Jack Carron
       </LogoText>
