@@ -6,6 +6,6 @@ export const SectionTitle = styled.h1`
   color: #000;
 
   @media screen and (max-width: 480px) {
-    text-align: center;
+    text-align: left;
   }
 `;

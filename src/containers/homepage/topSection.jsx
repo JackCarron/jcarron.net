@@ -1,21 +1,16 @@
 import React from "react";
 import { Element, scroller } from "react-scroll";
 import styled from "styled-components";
-
-import BackgroundImg from "../../assets/pictures/company_team.jpg";
-import { Button } from "../../components/button";
 import { DownArrow } from "../../components/downArrow";
 import { Logo } from "../../components/logo";
 import { Marginer } from "../../components/marginer";
 import { Navbar } from "../../components/navbar";
-import theme from "../../theme"
 import '../../assets/css/typewriter.css';
 
 const TopContainer = styled.div`
   width: 100%;
   height: 100vh;
   padding: 0;
-  background-image: url(${BackgroundImg});
   position: relative;
 `;
 

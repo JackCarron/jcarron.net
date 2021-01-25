@@ -4,11 +4,10 @@ import styled from "styled-components";
 import { Button } from "../button";
 import { Logo } from "../logo";
 import { Marginer } from "../marginer";
-import { faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 const FooterContainer = styled.div`
   width: 100%;
-  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +53,6 @@ const SocialIcon = styled.div`
   font-size: 20px;
   transition: all 200ms ease-in-out;
   cursor: pointer;
-
   &:not(:last-of-type) {
     margin-right: 11px;
 
@@ -76,8 +74,7 @@ const Link = styled.a`
   color: #fff;
   transition: all 200ms ease-in-out;
   cursor: pointer;
-  font-size: 14px;
-
+  font-size: 45px;
   &:not(:last-of-type) {
     margin-right: 11px;
 
@@ -87,7 +84,7 @@ const Link = styled.a`
   }
 
   @media screen and (max-width: 480px) {
-    font-size: 12px;
+    font-size: 25px;
   }
 
   &:hover {
@@ -112,17 +109,15 @@ export function Footer(props) {
       <Marginer direction="vertical" margin="1em" />
       <MotivationalText>Thank you for visiting jcarron.net</MotivationalText>
       <Marginer direction="vertical" margin="1em" />
-      <Button>Contact Me</Button>
-      <Marginer direction="vertical" margin="5em" />
       <AccessibilityContainer>
         <PrivacyContainer>
-          <Link>Resume</Link>
-          <Link>Gallery</Link>
-          <Link>Contact</Link>
         </PrivacyContainer>
         <SocialContainer>
           <SocialIcon>
-            <a href ="https://www.linkedin.com/in/hijackcarron/"><FontAwesomeIcon icon={faLinkedin} /></a>
+            <Link href ="https://www.linkedin.com/in/hijackcarron/"><FontAwesomeIcon icon={faLinkedin} /></Link>
+          </SocialIcon>
+          <SocialIcon>
+            <Link href ="https://github.com/JackCarron"><FontAwesomeIcon icon={faGithub} /></Link>
           </SocialIcon>
         </SocialContainer>
       </AccessibilityContainer>

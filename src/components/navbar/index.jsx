@@ -69,21 +69,16 @@ const Menu = ({ open, setOpen }) => {
   const scrollToNextSection = (e) => {
     e.preventDefault();
     setOpen(!open);
-    console.log(e);
     console.log(e.target.name);
     scroller.scrollTo(e.target.name, { smooth: true, duration: 1500 });
   };
   return (
     <StyledMenu open={open}>
-      <a href="" name="servicesSection" onClick={scrollToNextSection}>
+      <a href="#" name="servicesSection" onClick={scrollToNextSection}>
         <span role="img" aria-label="about us">💁🏻‍♂️</span>
         About Jack
       </a>
-      <a href="#">
-        <span role="img" aria-label="price">📝</span>
-        Projects/Resume
-        </a>
-      <a href="#">
+      <a href="#" name="contactSection" onClick={scrollToNextSection}>
         <span role="img" aria-label="contact">📩</span>
         Contact
         </a>
