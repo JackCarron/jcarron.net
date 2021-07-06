@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Footer } from "../../components/footer";
-import { Marginer } from "../../components/marginer";
 import { ContactSection } from "./contactSection";
 import { ServicesSection } from "./servicesSection";
 import { TopSection } from "./topSection";

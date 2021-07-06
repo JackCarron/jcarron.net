@@ -23,15 +23,6 @@ const BackgroundFilter = styled.div`
   align-items: center;
 `;
 
-const MotivationalText = styled.h1`
-  font-size: 34px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #fff;
-  margin: 0;
-  text-align: center;
-`;
-
 const DownArrowContainer = styled.div`
   position: absolute;
   bottom: 20%;
