@@ -8,6 +8,7 @@ import { SectionTitle } from "../../components/sectionTitle";
 import Service1Img from "../../assets/illustrations/web_development_.png";
 import Service2Img from "../../assets/illustrations/mobile_phone.png";
 import Service3Img from "../../assets/illustrations/bug_fixed.png";
+import Service4Img from "../../assets/illustrations/rocket_launch_.png";
 import ProfessionalImg from "../../assets/illustrations/Professional.PNG";
 
 const ServicesContainer = styled(Element)`
@@ -60,20 +61,26 @@ export function ServicesSection(props) {
       <Details>Providing current day solutions, to modern day problems</Details>
       <Marginer direction="vertical" margin="3em" />
       <OurSerivce
+        title="Amazon Web Services"
+        description="Software Developer/Web Developer, Marketing Lead Management & Operations"
+        imgUrl={Service4Img}
+      />
+      <OurSerivce
         title="Deloitte Consulting"
-        description="Solution Analyst/Software Engineer, Salesforce Development, Data Scripting, and Skilled Desk Jockey"
+        description="Solution Analyst/Software Engineer, Salesforce Development, Data Scripting, and React Development"
         imgUrl={Service3Img}
+        isReversed
       />
       <OurSerivce
         title="Programming Experience"
         description="JavaScript (Strong), Apex (Strong), Python (Moderate), Java (Moderate), React Framework (Moderate)"
         imgUrl={Service2Img}
-        isReversed
       />
       <OurSerivce
         title="Salesforce Experience"
         description="Apex, LWC, Aura, Custom Dev, and Integration for Fortune 500 companies and large organizations"
         imgUrl={Service1Img}
+        isReversed
       />
     </ServicesContainer>
   );

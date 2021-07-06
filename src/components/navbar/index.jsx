@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../button";
 import { Logo } from "../logo";
-import { Marginer } from "../marginer";
-import { Element, scroller } from "react-scroll";
-import {theme} from "../../theme.js"
+import { scroller } from "react-scroll";
 
 const NavbarContainer = styled.div`
   width: 100%;
@@ -74,11 +71,11 @@ const Menu = ({ open, setOpen }) => {
   };
   return (
     <StyledMenu open={open}>
-      <a href="#" name="servicesSection" onClick={scrollToNextSection}>
+      <a href="#about" name="servicesSection" onClick={scrollToNextSection}>
         <span role="img" aria-label="about us">💁🏻‍♂️</span>
         About Jack
       </a>
-      <a href="#" name="contactSection" onClick={scrollToNextSection}>
+      <a href="#contact" name="contactSection" onClick={scrollToNextSection}>
         <span role="img" aria-label="contact">📩</span>
         Contact
         </a>

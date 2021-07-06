@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../button";
 import { Logo } from "../logo";
 import { Marginer } from "../marginer";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -90,15 +89,6 @@ const Link = styled.a`
   &:hover {
     color: #adadad;
   }
-`;
-
-const RightsReserved = styled.div`
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  font-size: 12px;
 `;
 
 export function Footer(props) {

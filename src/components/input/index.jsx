@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { theme } from "../../theme";
-
 
 const ContactLabel = styled.label`
   width: 200px;
@@ -40,10 +38,6 @@ const ContactMultiline = styled.textarea`
 
 
 export class Input extends React.Component {
-    
-    constructor(props) {
-        super(props);
-    }
 
     render() {
     return (
