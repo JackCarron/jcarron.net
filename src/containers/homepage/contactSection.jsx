@@ -64,13 +64,13 @@ export class ContactSection extends React.Component {
   };
 
   handleSubmit(event) {         
-    fetch('https://api-john-jack-carron-developer-edition.na139.force.com/services/apexrest/Messages',
+    fetch('https://l83jz60mmh.execute-api.us-east-1.amazonaws.com/prod/proxy/emails',
       {method:"POST",
-      body: {
-        email: this.state.emailAddress,
+      body: JSON.stringify({
+        emailAddress: this.state.emailAddress,
         subject: this.state.subject,
         message: this.state.body
-      }})
+      })})
       .then(res => res.json())
       .then(
         (result) => {
@@ -92,8 +92,7 @@ export class ContactSection extends React.Component {
           });
         }
       )   
-
-
+    alert('Thank you for submitting your message.');
   }
 
   render() {
