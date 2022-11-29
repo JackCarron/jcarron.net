@@ -1,6 +1,8 @@
 import React from "react";
-import "./App.css";
 import { Homepage } from "./containers/homepage";
+
+import "./App.css";
+
 
 function App(props) {
   return (       
