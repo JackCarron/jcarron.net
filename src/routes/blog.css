@@ -1,0 +1,43 @@
+.container {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-color: #282c34;
+    padding-top: 30px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.blog-photos {
+    max-width: 250px;
+    margin: 10px;
+}
+
+.title {
+    text-align: center;
+    color: #00fff5  ;
+}
+
+.header {
+    max-width: 800px;
+    margin: auto;
+    color: white;
+}
+
+.padding-left {
+    padding-left: 20px;
+}
+
+.content {
+    max-width: 800px;
+    margin: auto;
+    background-color: white !important;
+    padding: 10px;
+    border-radius: 2.5px;
+}

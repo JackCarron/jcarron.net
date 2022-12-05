@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   createBrowserRouter,
-  RouterProvider,
-  Route,
+  RouterProvider
 } from "react-router-dom";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -21,6 +20,7 @@ const router = createBrowserRouter([
   {
     path: "blogs/:blogId",
     element: <Blog />,
+    errorElement: <ErrorPage />
   },
 ]);
 

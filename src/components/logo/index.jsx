@@ -31,7 +31,7 @@ export function Logo(props) {
   
   return (
     <LogoContainer inline={inline} small={small}>
-      <a id="MainLogo" href={window.location.href} style={logoDivStyle}>
+      <a id="MainLogo" href={window.location.origin} style={logoDivStyle}>
       <LogoText inline={inline} small={small}>JC.</LogoText>
       </a>
     </LogoContainer>

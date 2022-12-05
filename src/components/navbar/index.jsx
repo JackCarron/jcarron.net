@@ -79,6 +79,10 @@ const Menu = ({ open, setOpen }) => {
         <span role="img" aria-label="contact">📩</span>
         Contact
         </a>
+      <a href="/blogs/a_framework_of_problem_solving" name="latestBlog">
+      <span role="img" aria-label="latest blog">📝</span>
+        Latest Blog
+      </a>
     </StyledMenu>
   )
 }
