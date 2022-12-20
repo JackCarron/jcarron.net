@@ -47,7 +47,8 @@ export class ContactSection extends React.Component {
     this.state = {
       emailAddress : '',
       subject : '',
-      body : ''
+      body : '',
+      optIn: false
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,7 +57,8 @@ export class ContactSection extends React.Component {
   formSubmitted = false; 
 
   handleInputChange = (e) => {
-    const target = e.target;
+    const target = e.target.name === 'optIn' ? {name: 'optIn', value: !this.state.optIn} : e.target;
+    console.log(target);
 
         this.setState({
           [target.name]: target.value
@@ -69,7 +71,8 @@ export class ContactSection extends React.Component {
       body: JSON.stringify({
         emailAddress: this.state.emailAddress,
         subject: this.state.subject,
-        message: this.state.body
+        message: this.state.body,
+        optIn: this.state.optIn
       })})
       .then(res => res.json())
       .then(
@@ -78,7 +81,8 @@ export class ContactSection extends React.Component {
           this.setState({
             emailAddress: '',
             subject: '',
-            body: ''
+            body: '',
+            optIn: false
         });
         },
         // Note: it's important to handle errors here
@@ -109,6 +113,7 @@ export class ContactSection extends React.Component {
                   onChange={this.handleInputChange}></Input>
           <Input label="Subject:" type="text" name="subject" value={this.state.subject} onChange={this.handleInputChange}></Input>
           <Input label="Message Body:" type="textArea" rows="5" name="body" value={this.state.body} onChange={this.handleInputChange}></Input>
+          <Input type="checkbox" name="optIn" label="By checking the box below, I am consenting to receiving SMS messages from jcarron.net" onChange={this.handleInputChange}></Input>
           <Button type="button" onClick={this.handleSubmit}>Submit</Button>
           </div>
         </ContactForm>
