@@ -9,7 +9,9 @@ import Service1Img from "../../assets/illustrations/web_development_.png";
 import Service2Img from "../../assets/illustrations/mobile_phone.png";
 import Service3Img from "../../assets/illustrations/bug_fixed.png";
 import Service4Img from "../../assets/illustrations/rocket_launch_.png";
-import ProfessionalImg from "../../assets/illustrations/Professional.PNG";
+import ProfessionalImg from "../../assets/illustrations/Professional.png";
+
+import '../../index.css';
 
 const ServicesContainer = styled(Element)`
   width: 100%;
@@ -52,17 +54,18 @@ const Details = styled.p`
 `;
 
 export function ServicesSection(props) {
+
   return (
     <ServicesContainer id="about" name="servicesSection">
       <SectionTitle>Meet Jack Carron</SectionTitle>      
       <HeadshotImg src={ProfessionalImg} />
       <Marginer direction="vertical" margin="3em" />
-      <SectionText>Modern Full Stack Software Engineer</SectionText>
-      <Details>Providing current day solutions, to modern day problems</Details>
+      <SectionText>Software Engineer</SectionText>
+      <Details>Offering State-of-the-Art Solutions for Present-Day Challenges</Details>
       <Marginer direction="vertical" margin="3em" />
       <OurSerivce
         title="Amazon Web Services"
-        description="Software Developer/Web Developer, Marketing Lead Management & Operations"
+        description="Software Development Engineer, Global Demand Operations, Java, React, Native AWS"
         imgUrl={Service4Img}
       />
       <OurSerivce
@@ -73,7 +76,7 @@ export function ServicesSection(props) {
       />
       <OurSerivce
         title="Programming Experience"
-        description="JavaScript (Strong), Apex (Strong), Python (Moderate), Java (Moderate), React Framework (Moderate)"
+        description={<LanguageStrengthComponent languages={languagesStrengths}/>}
         imgUrl={Service2Img}
       />
       <OurSerivce
@@ -85,3 +88,23 @@ export function ServicesSection(props) {
     </ServicesContainer>
   );
 }
+
+const LanguageStrengthComponent = ({ languages }) => {
+  return (
+    <ul className="language-list">
+      {Object.entries(languages).map(([lang, strength]) => (
+        <li key={lang} >
+          {lang}: <br /> {Array(strength).fill('||||').join('')}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const languagesStrengths = {
+  "Python": 5,
+  "JavaScript": 4,
+  "Java": 3,
+  "C++": 2,
+  "Ruby": 4
+};

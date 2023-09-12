@@ -45,7 +45,7 @@ const Title = styled.h2`
   }
 `;
 
-const Details = styled.p`
+const Details = styled.div`
   color: #7a7a7a;
   font-size: 21px;
   text-align: center;
