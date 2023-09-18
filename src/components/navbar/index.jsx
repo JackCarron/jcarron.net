@@ -28,14 +28,15 @@ const StyledMenu = styled.nav`
   flex-direction: column;
   justify-content: center;
   background: #EFFFFA;
-  transform: ${({ open }) => open ? 'translateX(0%)' : 'translateX(-100%)'};
   height: 100vh;
+  z-index: 999;
   text-align: left;
   padding: 2rem;
-  position: absolute;
+  position: fixed; /* Ensure the menu is fixed to the viewport */
   top: 0;
-  left: 0;
-  transition: transform 0.3s ease-in-out;
+  right: 0; 
+  transform: ${({ open }) => (open ? 'translateX(0%)' : 'translateX(100%)')};
+  transition: transform 0.7s ease-in-out;
 
   @media (max-width: 576px) {
       width: 100%;
@@ -99,7 +100,7 @@ const StyledBurger = styled.button`
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10;
+  z-index: 9999;
 
   &:focus {
     outline: none;

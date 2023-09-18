@@ -31,7 +31,7 @@ export function DownArrow() {
   return (
     <ArrowContainer>
       <ArrowIcon>
-        <FontAwesomeIcon icon={faAngleDown} />
+        <FontAwesomeIcon icon={faAngleDown} style={{ color: theme.primary }}/>
       </ArrowIcon>
     </ArrowContainer>
   );

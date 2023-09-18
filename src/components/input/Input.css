@@ -1,0 +1,50 @@
+/* Input.css */
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Left-aligned */
+    max-width: 500px; /* Adjust the maximum width as needed */
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px; /* Add padding for spacing */
+  }
+  
+  .contact-label {
+    font-size: 24px; /* Adjust the label font size */
+    color: #2f2f2f;
+    font-weight: normal;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  
+  .contact-input,
+  .contact-checkbox,
+  .contact-multiline {
+    font-size: 18px; /* Adjust the input font size */
+    color: #2f2f2f;
+    font-weight: normal;
+    line-height: 1.4;
+    padding: 10px; /* Add padding for spacing */
+    border: 1px solid #ccc; /* Add a border if desired */
+    border-radius: 7px; /* Add border-radius if desired */
+    margin-bottom: 10px; /* Add margin between inputs */
+  }
+
+  .contact-input,
+  .contact-multiline {
+    width: 100%;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .contact-checkbox {
+    margin-right: 10px; /* Adjust the spacing between checkbox and label text */
+  }
+  
+  .checkbox-label {
+    font-size: 18px; /* Adjust the label font size for checkboxes */
+  }
+  

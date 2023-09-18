@@ -1,0 +1,66 @@
+/* ServicesSection.css */
+
+.headshot-img {
+    width: 30em;
+    max-width: 70%; /* Add this line */
+    border-radius: 26%;
+    margin: 20px 0px;
+  
+    @media screen and (max-width: 480px) {
+      width: 60%;
+    }
+  }
+
+#about {
+    width: 100%;
+    min-height: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  #about h2 {
+    color: #000;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 5px 0;
+  }
+  
+  #about p {
+    color: #7a7a7a;
+    font-size: 21px;
+    text-align: center;
+    max-width: 55%;
+  }
+  
+  .service {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3em;
+  }
+  
+  .service-reversed {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3em;
+  }
+  
+  .service-content {
+    flex: 1;
+    padding: 0 20px;
+  }
+  
+  .service h3 {
+    font-size: 24px;
+    margin-bottom: 1em;
+  }
+  
+  .service img {
+    max-width: 100%;
+  }
+  
