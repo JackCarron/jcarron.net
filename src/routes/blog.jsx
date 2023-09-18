@@ -11,17 +11,18 @@ import './blog.css'
 const AVAILABLE_BLOGS = ['a_framework_of_problem_solving'];
 
 export default function Blog() {
+    document.title = "Jack Carron | Blog"
     const location = useLocation(); 
     if (AVAILABLE_BLOGS.includes(location.pathname.split('/')[2])) {
         return (
-            <div class='container'>
-                <div class='header'>
+            <div className='container'>
+                <div className='header'>
                 <Logo />
                 <p className='padding-left'>Sunday Dec 4</p>
                 <p className='padding-left'>Author: Jack Carron</p>
                 <h3 className='title'><u>A Framework of Problem Solving</u></h3>
                 </div>
-            <div class='content'>
+            <div className='content'>
                 <p>Innovation on a macro scale starts with an individual’s everyday problem solving. The process begins with curiosity, followed by asking questions, and finally learning. In order to make myself a better innovator, I began with introspection. Starting small, I looked at the dusty inoperable 2015 Macbook Pro on my desk. During my problem solving, I had the thought that consistent learning provides opportunity for inspiration and innovation.</p>
                 <img className='blog-photos float-left' src={MacbookProDisassembly} alt='Macbook Pro Disassembly'></img>
                 <p>I am well-versed in the field of software engineering. However, I am not as experienced with Apple laptop repairs. When looking at my old laptop that wouldn’t turn on, I was quite challenged. Although I didn’t have the knowledge of what was wrong, I was curious to figure that out. As a result, I started the debugging process. First, I tried to power on the laptop with the power button. The result, a black screen. Next, I plugged in the computer power source and I tried to turn it on. The result, once again, a black screen. However, I was left with a hint, the power input light turned orange. This gave me some hope that the computer was salvageable. But, I still didn’t have much information. It was possible the computer needed to be charged more, so I left it plugged in for 24 hours. After the time elapsed, I opened the laptop and held the power button. The result, yet again, a black screen. However, I was left with another hint! The power input light was still orange, usually a fully charged battery shows a green light after 24 hours of charging. Consequently, I had the suspicion the issue was the battery's ability to hold a charge.</p>

@@ -13,6 +13,7 @@ const PageContainer = styled.div`
 `;
 
 export function Homepage(props) {
+  document.title = "Jack Carron | Home"
   return (
     <PageContainer>
       <TopSection />
