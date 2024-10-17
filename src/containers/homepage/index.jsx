@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { Footer } from "../../components/footer";
-import { ContactSection } from "./contactSection";
-import { ServicesSection } from "./servicesSection";
-import { TopSection } from "./topSection";
+import React from 'react';
+import styled from 'styled-components';
+import { Footer } from '../../components/footer';
+import { ContactSection } from './contactSection';
+import { ServicesSection } from './servicesSection';
+import { TopSection } from './topSection';
 
 const PageContainer = styled.div`
   width: 100%;
@@ -12,13 +12,13 @@ const PageContainer = styled.div`
   flex-direction: column;
 `;
 
-export function Homepage(props) {
-  document.title = "Jack Carron | Home"
+export function Homepage() {
+  document.title = 'Jack Carron | Home';
   return (
     <PageContainer>
       <TopSection />
-      <ServicesSection />  
-      <ContactSection/>
+      <ServicesSection />
+      <ContactSection />
       <Footer />
     </PageContainer>
   );

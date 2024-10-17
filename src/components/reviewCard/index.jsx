@@ -1,8 +1,8 @@
-import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import styled from "styled-components";
-import { Marginer } from "../marginer";
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import styled from 'styled-components';
+import { Marginer } from '../marginer';
 
 const CardContainer = styled.div`
   width: 350px;

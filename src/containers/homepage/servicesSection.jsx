@@ -1,19 +1,17 @@
-import React from "react";
-import { OurService } from "../../components/ourService";
-import { Element } from "react-scroll";
+import React from 'react';
+import { OurService } from '../../components/ourService';
+import { Element } from 'react-scroll';
 
-import Service1Img from "../../assets/illustrations/web_development_.png";
-import Service2Img from "../../assets/illustrations/mobile_phone.png";
-import Service3Img from "../../assets/illustrations/bug_fixed.png";
-import Service4Img from "../../assets/illustrations/rocket_launch_.png";
-import ProfessionalImg from "../../assets/illustrations/Professional.png";
+import Service1Img from '../../assets/illustrations/web_development_.png';
+import Service2Img from '../../assets/illustrations/mobile_phone.png';
+import Service3Img from '../../assets/illustrations/bug_fixed.png';
+import Service4Img from '../../assets/illustrations/rocket_launch_.png';
+import ProfessionalImg from '../../assets/illustrations/Professional.png';
 
 import '../../index.css';
 import './servicesSection.css';
 
-
 export function ServicesSection(props) {
-
   return (
     <Element id="about" name="servicesSection">
       <h2>Meet Jack Carron</h2>

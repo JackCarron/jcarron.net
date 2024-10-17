@@ -10,24 +10,24 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.21.1",
+    "axios": "^1.7.7",
     "cjs": "0.0.11",
-    "eslint": "^7.18.0",
-    "eslint-loader": "^4.0.2",
     "node-libs-browser": "^2.2.1",
-    "node-sass": "^6.0.0",
+    "node-sass": "^9.0.0",
     "pure-react-carousel": "^1.27.5",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-responsive": "^8.1.0",
-    "react-scripts": "^4.0.1",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "^5.0.1",
     "react-scroll": "^1.8.1",
     "style-loader": "^2.0.0",
     "styled-components": "^5.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "prettier": "npx eslint src/ --ext .js,.jsx --fix && npx prettier --write '**/*.js' '**/*.jsx'",
+    "start": "npm run prettier && react-scripts start",
+    "build": "npm run prettier && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -47,6 +47,12 @@
     ]
   },
   "devDependencies": {
-    "react-router-dom": "^6.4.3"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.0.0"
   }
 }

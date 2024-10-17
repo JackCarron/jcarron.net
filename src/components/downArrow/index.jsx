@@ -1,8 +1,8 @@
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import styled from "styled-components";
-import { theme } from "../../theme";
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import styled from 'styled-components';
+import { theme } from '../../theme';
 
 const ArrowContainer = styled.div`
   width: 46px;
@@ -31,7 +31,7 @@ export function DownArrow() {
   return (
     <ArrowContainer>
       <ArrowIcon>
-        <FontAwesomeIcon icon={faAngleDown} style={{ color: theme.primary }}/>
+        <FontAwesomeIcon icon={faAngleDown} style={{ color: theme.primary }} />
       </ArrowIcon>
     </ArrowContainer>
   );
