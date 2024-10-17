@@ -1,16 +1,16 @@
-import React from "react";
-import "./Input.css";
+import React from 'react';
+import './Input.css';
 
 export class Input extends React.Component {
   render() {
     return (
       <div className="input-container">
-        {this.props.type !== "checkbox" && (
+        {this.props.type !== 'checkbox' && (
           <label htmlFor={this.props.name} className="contact-label">
             {this.props.label}
           </label>
         )}
-        {this.props.type === "checkbox" ? (
+        {this.props.type === 'checkbox' ? (
           <div className="checkbox-container">
             <input
               type="checkbox"
@@ -23,7 +23,7 @@ export class Input extends React.Component {
               {this.props.label}
             </label>
           </div>
-        ) : this.props.type !== "textArea" ? (
+        ) : this.props.type !== 'textArea' ? (
           <input
             type={this.props.type}
             name={this.props.name}

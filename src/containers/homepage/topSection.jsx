@@ -1,10 +1,10 @@
-import React from "react";
-import { Element, scroller } from "react-scroll";
-import styled from "styled-components";
-import { DownArrow } from "../../components/downArrow";
-import { Logo } from "../../components/logo";
-import { Marginer } from "../../components/marginer";
-import { Navbar } from "../../components/navbar";
+import React from 'react';
+import { Element, scroller } from 'react-scroll';
+import styled from 'styled-components';
+import { DownArrow } from '../../components/downArrow';
+import { Logo } from '../../components/logo';
+import { Marginer } from '../../components/marginer';
+import { Navbar } from '../../components/navbar';
 import '../../assets/css/typewriter.css';
 
 const TopContainer = styled.div`
@@ -32,10 +32,10 @@ const DownArrowContainer = styled.div`
 
 const TypeWriter = styled.p`
   font-size: 18px;
-`
-export function TopSection(props) {
+`;
+export function TopSection() {
   const scrollToNextSection = () => {
-    scroller.scrollTo("servicesSection", { smooth: true, duration: 1500 });
+    scroller.scrollTo('servicesSection', { smooth: true, duration: 1500 });
   };
 
   return (
@@ -45,12 +45,12 @@ export function TopSection(props) {
           <Navbar />
           <Marginer direction="vertical" margin="8em" />
           <Logo />
-          <div className="css-typing" style={{color: "white"}}>
-            <TypeWriter>Welcome to Jcarron.net.</TypeWriter>            
+          <div className="css-typing" style={{ color: 'white' }}>
+            <TypeWriter>Welcome to Jcarron.net.</TypeWriter>
           </div>
           <Marginer direction="vertical" margin="2em" />
-          <div className="css-typing" style={{color: "white"}}>
-            <TypeWriter>Click the arrow below to meet Jack..</TypeWriter>            
+          <div className="css-typing" style={{ color: 'white' }}>
+            <TypeWriter>Click the arrow below to meet Jack..</TypeWriter>
           </div>
           <DownArrowContainer onClick={scrollToNextSection}>
             <DownArrow />

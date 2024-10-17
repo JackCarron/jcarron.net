@@ -1,29 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  createBrowserRouter,
-  RouterProvider
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import ErrorPage from "./error-page";
-import Blog from './routes/blog'
+import ErrorPage from './error-page';
+import Blog from './routes/blog';
 
 import './index.css';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: "blogs/:blogId",
+    path: 'blogs/:blogId',
     element: <Blog />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
 ]);
-
 
 ReactDOM.render(
   <React.StrictMode>

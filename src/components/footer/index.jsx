@@ -1,9 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import styled from "styled-components";
-import { Logo } from "../logo";
-import { Marginer } from "../marginer";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import styled from 'styled-components';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { Logo } from '../logo';
+import { Marginer } from '../marginer';
 
 const FooterContainer = styled.div`
   width: 100%;
@@ -91,7 +91,7 @@ const Link = styled.a`
   }
 `;
 
-export function Footer(props) {
+export function Footer() {
   return (
     <FooterContainer>
       <Marginer direction="vertical" margin="5em" />
@@ -100,14 +100,17 @@ export function Footer(props) {
       <MotivationalText>Thank you for visiting jcarron.net</MotivationalText>
       <Marginer direction="vertical" margin="1em" />
       <AccessibilityContainer>
-        <PrivacyContainer>
-        </PrivacyContainer>
+        <PrivacyContainer />
         <SocialContainer>
           <SocialIcon>
-            <Link href ="https://www.linkedin.com/in/hijackcarron/"><FontAwesomeIcon icon={faLinkedin} /></Link>
+            <Link href="https://www.linkedin.com/in/hijackcarron/">
+              <FontAwesomeIcon icon={faLinkedin} />
+            </Link>
           </SocialIcon>
           <SocialIcon>
-            <Link href ="https://github.com/JackCarron"><FontAwesomeIcon icon={faGithub} /></Link>
+            <Link href="https://github.com/JackCarron">
+              <FontAwesomeIcon icon={faGithub} />
+            </Link>
           </SocialIcon>
         </SocialContainer>
       </AccessibilityContainer>
