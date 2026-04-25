@@ -2,9 +2,12 @@
 
 .headshot-img {
     width: 30em;
-    max-width: 70%; /* Add this line */
+    max-width: 70%;
     border-radius: 26%;
     margin: 20px 0px;
+    max-height:450px;
+    object-position: 50% 15%;
+    object-fit: cover;
   
     @media screen and (max-width: 480px) {
       width: 60%;
