@@ -5,11 +5,15 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 1.8em;
+    padding: 3rem 2rem;
   }
   
   .contact-form {
-    max-width: 500px;
+    width: min(100%, 780px);
+  }
+
+  .form-fields {
+    width: 100%;
   }
   
   .submit-button {
@@ -32,8 +36,12 @@
   }
   
   @media screen and (max-width: 480px) {
+    .contact-container {
+      padding: 1.8em;
+    }
+
     .contact-form {
-      max-width: 100%;
+      width: 100%;
     }
   }
   

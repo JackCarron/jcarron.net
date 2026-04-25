@@ -18,27 +18,27 @@ export function ServicesSection(props) {
       <img className="headshot-img" src={ProfessionalImg} alt="Jack Carron" />
       <div className="margin"></div>
       <h2>Software Engineer</h2>
-      <p>Offering State-of-the-Art Solutions for Present-Day Challenges</p>
+      <p>Engineering modern solutions for complex challenges.</p>
       <div className="margin"></div>
       <OurService
         title="Amazon Web Services"
-        description="Software Development Engineer, Global Demand Operations, Java, React, Native AWS"
+        description="Software Dev Engineer II, Building marketing automation software."
         imgUrl={Service4Img}
       />
       <OurService
         title="Deloitte Consulting"
-        description="Solution Analyst/Software Engineer, Salesforce Development, Data Scripting, and React Development"
+        description="Delivered enterprise Salesforce and React solutions."
         imgUrl={Service3Img}
         isReversed
       />
       <OurService
-        title="Programming Experience"
-        description="JavaScript/Typescript (Strong), AWS (Strong), Java (Strong), Python (Moderate), React Framework (Strong)"
+        title="Core Technical Strengths"
+        description="Full-stack development with cloud infrastracture and modern web platforms."
         imgUrl={Service2Img}
       />
       <OurService
-        title="Salesforce Experience"
-        description="Apex, LWC, Aura, Custom Dev, and Integration for Fortune 500 companies and large organizations"
+        title="Certifications"
+        description="AWS Cloud Practitioner and Salesforce Platform Developer"
         imgUrl={Service1Img}
         isReversed
       />

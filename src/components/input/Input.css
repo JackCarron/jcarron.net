@@ -3,10 +3,11 @@
 .input-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Left-aligned */
-    max-width: 500px; /* Adjust the maximum width as needed */
-    margin: 0 auto; /* Center horizontally */
-    padding: 20px; /* Add padding for spacing */
+    align-items: flex-start;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 20px 0;
   }
   
   .contact-label {
@@ -37,14 +38,18 @@
   
   .checkbox-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
   }
   
   .contact-checkbox {
-    margin-right: 10px; /* Adjust the spacing between checkbox and label text */
+    margin-top: 4px;
+    margin-right: 0;
   }
   
   .checkbox-label {
-    font-size: 18px; /* Adjust the label font size for checkboxes */
+    font-size: 18px;
+    line-height: 1.5;
   }
   

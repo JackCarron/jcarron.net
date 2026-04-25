@@ -69,7 +69,7 @@ export class ContactSection extends React.Component {
         <SectionTitle style={{ alignItems: 'center' }}>
           Contact Jack Carron
         </SectionTitle>
-        <form className="contact-form" style={{ maxWidth: '500px' }}>
+        <form className="contact-form">
           <div className="form-fields">
             <Input
               label="Email Address:"
@@ -92,12 +92,6 @@ export class ContactSection extends React.Component {
               rows="5"
               name="body"
               value={this.state.body}
-              onChange={this.handleInputChange}
-            ></Input>
-            <Input
-              type="checkbox"
-              name="optIn"
-              label="By checking the box below, I am consenting to receiving SMS messages from jcarron.net"
               onChange={this.handleInputChange}
             ></Input>
             <div className="submit-button-container">
