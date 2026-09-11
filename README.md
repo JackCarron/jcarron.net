@@ -68,13 +68,13 @@ For more details on these scripts, refer to the Create React App documentation.
 
 ## Contact form configuration
 
-The contact form uses Cloudflare Turnstile. Production configuration is kept in
-`.env.production`. Copy `.env.example` to `.env.local` for local development and
-set the public Turnstile site key.
+The contact form loads public browser settings from `/config.json` at runtime.
+For local development, set `turnstileSiteKey` in `public/config.json`. The
+production deployment script retrieves the Secrets Manager value, extracts only
+the public `SITE_KEY`, and generates `build/config.json` before uploading.
 
-The Turnstile secret key must never be placed in this repository or in a
-`REACT_APP_*` variable. Store it only in the contact API's backend environment
-or secrets manager.
+The Turnstile secret key must never be placed in this repository or any browser
+configuration. It stays in Secrets Manager and is read only by the contact API.
 
 The production backend at `https://api.jcarron.net/contact`:
 

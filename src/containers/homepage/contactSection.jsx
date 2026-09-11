@@ -1,23 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { loadRuntimeConfig } from '../../runtimeConfig';
 import './contactSection.css';
 
-const CONTACT_API_URL =
-  process.env.REACT_APP_CONTACT_API_URL || 'https://api.jcarron.net/contact';
-const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY;
-
-function TurnstileWidget({ onTokenChange, resetKey }) {
+function TurnstileWidget({ onTokenChange, resetKey, siteKey }) {
   const containerRef = useRef(null);
   const widgetIdRef = useRef(null);
 
   useEffect(() => {
-    if (!TURNSTILE_SITE_KEY) {
+    if (!siteKey) {
       return undefined;
     }
 
     const renderWidget = () => {
       if (!window.turnstile || !containerRef.current) return;
       widgetIdRef.current = window.turnstile.render(containerRef.current, {
-        sitekey: TURNSTILE_SITE_KEY,
+        sitekey: siteKey,
         action: 'contact',
         theme: 'light',
         callback: onTokenChange,
@@ -53,16 +50,9 @@ function TurnstileWidget({ onTokenChange, resetKey }) {
         window.turnstile.remove(widgetIdRef.current);
       }
     };
-  }, [onTokenChange, resetKey]);
+  }, [onTokenChange, resetKey, siteKey]);
 
-  if (!TURNSTILE_SITE_KEY) {
-    return (
-      <p className="form-config-message">
-        Contact form protection is being configured. In the meantime, connect
-        with me on LinkedIn.
-      </p>
-    );
-  }
+  if (!siteKey) return null;
 
   return <div className="turnstile-widget" ref={containerRef} />;
 }
@@ -75,12 +65,33 @@ const initialFields = {
 };
 
 export function ContactSection() {
+  const [runtimeConfig, setRuntimeConfig] = useState(null);
+  const [configStatus, setConfigStatus] = useState('loading');
   const [fields, setFields] = useState(initialFields);
   const [turnstileToken, setTurnstileToken] = useState('');
   const [status, setStatus] = useState('idle');
   const [statusMessage, setStatusMessage] = useState('');
   const [resetKey, setResetKey] = useState(0);
   const startedAt = useRef(Date.now());
+
+  useEffect(() => {
+    let active = true;
+
+    loadRuntimeConfig()
+      .then((config) => {
+        if (!active) return;
+        setRuntimeConfig(config);
+        setConfigStatus('ready');
+      })
+      .catch(() => {
+        if (!active) return;
+        setConfigStatus('error');
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -93,7 +104,7 @@ export function ContactSection() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!TURNSTILE_SITE_KEY || !turnstileToken || status === 'submitting') {
+    if (!runtimeConfig || !turnstileToken || status === 'submitting') {
       setStatusMessage('Please complete the security check before sending.');
       return;
     }
@@ -102,7 +113,7 @@ export function ContactSection() {
     setStatusMessage('');
 
     try {
-      const response = await fetch(CONTACT_API_URL, {
+      const response = await fetch(runtimeConfig.contactApiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -135,22 +146,23 @@ export function ContactSection() {
     <section className="contact-section" id="contact">
       <div className="page-shell contact-layout">
         <div className="contact-intro">
-          <p className="eyebrow">Contact</p>
-          <h2>Have an interesting problem to solve?</h2>
+          <p className="section-index">03 / Contact</p>
+          <h2>Let’s talk.</h2>
           <p>
-            I’m always glad to meet thoughtful people working on useful,
-            technically challenging products.
+            If you have a project, role, or interesting engineering problem in
+            mind, send me a note.
           </p>
           <a
             href="https://www.linkedin.com/in/hijackcarron/"
             target="_blank"
             rel="noreferrer"
           >
-            Connect on LinkedIn <span aria-hidden="true">↗</span>
+            Or find me on LinkedIn ↗
           </a>
         </div>
 
         <form className="contact-form" onSubmit={handleSubmit}>
+          <p className="form-heading">Send a note</p>
           <div className="field-row">
             <label htmlFor="emailAddress">Email address</label>
             <input
@@ -160,6 +172,7 @@ export function ContactSection() {
               autoComplete="email"
               maxLength="254"
               required
+              placeholder="you@example.com"
               value={fields.emailAddress}
               onChange={handleChange}
             />
@@ -173,6 +186,7 @@ export function ContactSection() {
               minLength="3"
               maxLength="120"
               required
+              placeholder="What are you working on?"
               value={fields.subject}
               onChange={handleChange}
             />
@@ -186,6 +200,7 @@ export function ContactSection() {
               minLength="20"
               maxLength="5000"
               required
+              placeholder="A few details about the problem, team, or idea…"
               value={fields.message}
               onChange={handleChange}
             />
@@ -205,13 +220,21 @@ export function ContactSection() {
           <TurnstileWidget
             onTokenChange={handleTokenChange}
             resetKey={resetKey}
+            siteKey={runtimeConfig?.turnstileSiteKey}
           />
+          {configStatus !== 'ready' && (
+            <p className="form-config-message" role="status">
+              {configStatus === 'loading'
+                ? 'Loading secure contact form…'
+                : 'The secure form is unavailable right now. Please connect with me on LinkedIn.'}
+            </p>
+          )}
           <div className="form-actions">
             <button
               className="button button-primary"
               type="submit"
               disabled={
-                !TURNSTILE_SITE_KEY ||
+                configStatus !== 'ready' ||
                 !turnstileToken ||
                 status === 'submitting'
               }

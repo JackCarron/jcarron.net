@@ -13,6 +13,7 @@ if [[ ! -d "$BUILD_DIR" ]]; then
   exit 1
 fi
 
+node "$SCRIPT_DIR/generate-runtime-config.js"
 aws s3 sync "$BUILD_DIR/" "s3://$BUCKET_NAME" --delete
 
 echo "Deployment complete: s3://$BUCKET_NAME"
