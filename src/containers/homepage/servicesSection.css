@@ -1,70 +1,194 @@
-/* ServicesSection.css */
+.section {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
 
-.headshot-img {
-    width: 30em;
-    max-width: 70%;
-    border-radius: 26%;
-    margin: 20px 0px;
-    max-height:450px;
-    object-position: 50% 15%;
-    object-fit: cover;
-  
-    @media screen and (max-width: 480px) {
-      width: 60%;
-      max-height:250px
-    }
+.section-heading {
+  display: grid;
+  grid-template-columns: 0.55fr 1.4fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 5rem;
+}
+
+.section-heading h2 {
+  margin: 0;
+  max-width: 700px;
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.section-heading > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.experience-list {
+  border-top: 1px solid var(--line);
+}
+
+.experience-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.experience-meta p {
+  margin: 0.35rem 0;
+  color: var(--muted);
+}
+
+.experience-meta .company {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.experience-detail h3,
+.capability-card h3 {
+  margin: 0 0 1rem;
+  font-size: 1.55rem;
+  letter-spacing: -0.025em;
+}
+
+.experience-detail > p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+}
+
+.tag-list span {
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.expertise-section {
+  overflow: hidden;
+  padding: 8rem 0;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.section-heading-light {
+  grid-template-columns: 0.55fr 2.4fr;
+}
+
+.section-heading-light .eyebrow {
+  color: #92a3b8;
+}
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #344051;
+  border-bottom: 1px solid #344051;
+}
+
+.capability-card {
+  min-height: 320px;
+  padding: 2rem;
+}
+
+.capability-card + .capability-card {
+  border-left: 1px solid #344051;
+}
+
+.capability-number {
+  display: block;
+  margin-bottom: 5rem;
+  color: var(--accent-light);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+
+.capability-card p {
+  color: #aeb8c6;
+  line-height: 1.7;
+}
+
+.certification-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.certification-row span {
+  color: var(--accent-light);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.certification-row p {
+  margin: 0;
+  color: #d6dce4;
+}
+
+@media (max-width: 850px) {
+  .section-heading,
+  .section-heading-light {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 
-#about {
-    width: 100%;
-    min-height: 1100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 0;
+  .experience-item {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-  
-  #about h2 {
-    color: #000;
-    font-size: 28px;
-    font-weight: 700;
-    margin: 5px 0;
+
+  .capability-grid {
+    grid-template-columns: 1fr;
   }
-  
-  #about p {
-    color: #7a7a7a;
-    font-size: 21px;
-    text-align: center;
-    max-width: 55%;
+
+  .capability-card {
+    min-height: auto;
   }
-  
-  .service {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 3em;
+
+  .capability-card + .capability-card {
+    border-top: 1px solid #344051;
+    border-left: 0;
   }
-  
-  .service-reversed {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 3em;
+
+  .capability-number {
+    margin-bottom: 2.5rem;
   }
-  
-  .service-content {
-    flex: 1;
-    padding: 0 20px;
+}
+
+@media (max-width: 600px) {
+  .section,
+  .expertise-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
   }
-  
-  .service h3 {
-    font-size: 24px;
-    margin-bottom: 1em;
+
+  .section-heading {
+    margin-bottom: 3rem;
   }
-  
-  .service img {
-    max-width: 100%;
+
+  .experience-item {
+    padding: 2.25rem 0;
   }
-  
+
+  .capability-card {
+    padding: 2rem 0;
+  }
+}

@@ -1,111 +1,235 @@
-import React from 'react';
-import { Element } from 'react-scroll';
-import { SectionTitle } from '../../components/sectionTitle';
-import { Input } from '../../components/input';
-import './contactSection.css'; // Import the CSS file for this component
+import React, { useEffect, useRef, useState } from 'react';
+import './contactSection.css';
 
-export class ContactSection extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      emailAddress: '',
-      subject: '',
-      body: '',
-      optIn: false,
+const CONTACT_API_URL =
+  process.env.REACT_APP_CONTACT_API_URL || 'https://api.jcarron.net/contact';
+const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY;
+
+function TurnstileWidget({ onTokenChange, resetKey }) {
+  const containerRef = useRef(null);
+  const widgetIdRef = useRef(null);
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY) {
+      return undefined;
+    }
+
+    const renderWidget = () => {
+      if (!window.turnstile || !containerRef.current) return;
+      widgetIdRef.current = window.turnstile.render(containerRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        action: 'contact',
+        theme: 'light',
+        callback: onTokenChange,
+        'expired-callback': () => onTokenChange(''),
+        'error-callback': () => onTokenChange(''),
+      });
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
 
-  handleInputChange(e) {
-    const target =
-      e.target.name === 'optIn'
-        ? { name: 'optIn', value: !this.state.optIn }
-        : e.target;
-    console.log(target);
+    const existingScript = document.querySelector(
+      'script[data-turnstile-script]'
+    );
 
-    this.setState({
-      [target.name]: target.value,
-    });
-  }
+    if (window.turnstile) {
+      renderWidget();
+    } else if (existingScript) {
+      existingScript.addEventListener('load', renderWidget, { once: true });
+    } else {
+      const script = document.createElement('script');
+      script.src =
+        'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.defer = true;
+      script.dataset.turnstileScript = 'true';
+      script.addEventListener('load', renderWidget, { once: true });
+      document.head.appendChild(script);
+    }
 
-  handleSubmit(event) {
-    fetch(
-      'https://l83jz60mmh.execute-api.us-east-1.amazonaws.com/prod/proxy/emails',
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          emailAddress: this.state.emailAddress,
-          subject: this.state.subject,
-          message: this.state.body,
-          optIn: this.state.optIn,
-        }),
+    return () => {
+      if (existingScript) {
+        existingScript.removeEventListener('load', renderWidget);
       }
-    )
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            emailAddress: '',
-            subject: '',
-            body: '',
-            optIn: false,
-          });
-        },
-        (error) => {
-          this.setState({
-            emailAddress: '',
-            subject: '',
-            body: '',
-          });
-        }
-      );
-    alert('Thank you for submitting your message.');
-  }
+      if (window.turnstile && widgetIdRef.current !== null) {
+        window.turnstile.remove(widgetIdRef.current);
+      }
+    };
+  }, [onTokenChange, resetKey]);
 
-  render() {
+  if (!TURNSTILE_SITE_KEY) {
     return (
-      <Element className="contact-container" id="contactSection">
-        <SectionTitle style={{ alignItems: 'center' }}>
-          Contact Jack Carron
-        </SectionTitle>
-        <form className="contact-form">
-          <div className="form-fields">
-            <Input
-              label="Email Address:"
-              type="email"
-              name="emailAddress"
-              value={this.state.emailAddress}
-              formSubmitted={false}
-              onChange={this.handleInputChange}
-            ></Input>
-            <Input
-              label="Subject:"
-              type="text"
-              name="subject"
-              value={this.state.subject}
-              onChange={this.handleInputChange}
-            ></Input>
-            <Input
-              label="Message Body:"
-              type="textArea"
-              rows="5"
-              name="body"
-              value={this.state.body}
-              onChange={this.handleInputChange}
-            ></Input>
-            <div className="submit-button-container">
-              <button
-                type="button"
-                onClick={this.handleSubmit}
-                className="submit-button"
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </form>
-      </Element>
+      <p className="form-config-message">
+        Contact form protection is being configured. In the meantime, connect
+        with me on LinkedIn.
+      </p>
     );
   }
+
+  return <div className="turnstile-widget" ref={containerRef} />;
+}
+
+const initialFields = {
+  emailAddress: '',
+  subject: '',
+  message: '',
+  website: '',
+};
+
+export function ContactSection() {
+  const [fields, setFields] = useState(initialFields);
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [status, setStatus] = useState('idle');
+  const [statusMessage, setStatusMessage] = useState('');
+  const [resetKey, setResetKey] = useState(0);
+  const startedAt = useRef(Date.now());
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFields((current) => ({ ...current, [name]: value }));
+  };
+
+  const handleTokenChange = React.useCallback((token) => {
+    setTurnstileToken(token);
+  }, []);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!TURNSTILE_SITE_KEY || !turnstileToken || status === 'submitting') {
+      setStatusMessage('Please complete the security check before sending.');
+      return;
+    }
+
+    setStatus('submitting');
+    setStatusMessage('');
+
+    try {
+      const response = await fetch(CONTACT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          emailAddress: fields.emailAddress.trim(),
+          subject: fields.subject.trim(),
+          message: fields.message.trim(),
+          website: fields.website,
+          formElapsedMs: Date.now() - startedAt.current,
+          turnstileToken,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Message request failed');
+
+      setFields(initialFields);
+      setTurnstileToken('');
+      setResetKey((current) => current + 1);
+      startedAt.current = Date.now();
+      setStatus('success');
+      setStatusMessage('Thanks — your message has been sent.');
+    } catch (error) {
+      setStatus('error');
+      setStatusMessage(
+        'Your message could not be sent. Please try again or reach out on LinkedIn.'
+      );
+    }
+  };
+
+  return (
+    <section className="contact-section" id="contact">
+      <div className="page-shell contact-layout">
+        <div className="contact-intro">
+          <p className="eyebrow">Contact</p>
+          <h2>Have an interesting problem to solve?</h2>
+          <p>
+            I’m always glad to meet thoughtful people working on useful,
+            technically challenging products.
+          </p>
+          <a
+            href="https://www.linkedin.com/in/hijackcarron/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Connect on LinkedIn <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="field-row">
+            <label htmlFor="emailAddress">Email address</label>
+            <input
+              id="emailAddress"
+              name="emailAddress"
+              type="email"
+              autoComplete="email"
+              maxLength="254"
+              required
+              value={fields.emailAddress}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="field-row">
+            <label htmlFor="subject">Subject</label>
+            <input
+              id="subject"
+              name="subject"
+              type="text"
+              minLength="3"
+              maxLength="120"
+              required
+              value={fields.subject}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="field-row">
+            <label htmlFor="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              minLength="20"
+              maxLength="5000"
+              required
+              value={fields.message}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="honeypot" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input
+              id="website"
+              name="website"
+              type="text"
+              tabIndex="-1"
+              autoComplete="off"
+              value={fields.website}
+              onChange={handleChange}
+            />
+          </div>
+          <TurnstileWidget
+            onTokenChange={handleTokenChange}
+            resetKey={resetKey}
+          />
+          <div className="form-actions">
+            <button
+              className="button button-primary"
+              type="submit"
+              disabled={
+                !TURNSTILE_SITE_KEY ||
+                !turnstileToken ||
+                status === 'submitting'
+              }
+            >
+              {status === 'submitting' ? 'Sending…' : 'Send message'}
+            </button>
+            <p
+              className={
+                status === 'error' ? 'form-status error' : 'form-status'
+              }
+              role="status"
+              aria-live="polite"
+            >
+              {statusMessage}
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
 }

@@ -66,6 +66,29 @@ In the project directory, you can run the following scripts:
 
 For more details on these scripts, refer to the Create React App documentation.
 
+## Contact form configuration
+
+The contact form uses Cloudflare Turnstile. Production configuration is kept in
+`.env.production`. Copy `.env.example` to `.env.local` for local development and
+set the public Turnstile site key.
+
+The Turnstile secret key must never be placed in this repository or in a
+`REACT_APP_*` variable. Store it only in the contact API's backend environment
+or secrets manager.
+
+The production backend at `https://api.jcarron.net/contact`:
+
+1. Validate `turnstileToken` with Cloudflare's Siteverify endpoint.
+2. Require a successful result with the expected `jcarron.net` hostname and
+   `contact` action.
+3. Reject populated `website` honeypot fields, malformed fields, and messages
+   outside the frontend's documented length limits.
+4. Apply rate limiting before sending mail through SES.
+
+The frontend intentionally disables submission when no Turnstile site key is
+configured. A client-side widget without server-side verification is not an
+abuse control.
+
 ## Contributing
 
 I welcome contributions and feedback. If you'd like to report a bug, request a feature, or contribute to the project, please open an issue or submit a pull request. Let's make this portfolio website even better together!
