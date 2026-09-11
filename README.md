@@ -68,10 +68,9 @@ For more details on these scripts, refer to the Create React App documentation.
 
 ## Contact form configuration
 
-The contact form loads public browser settings from `/config.json` at runtime.
-For local development, set `turnstileSiteKey` in `public/config.json`. The
-production deployment script retrieves the Secrets Manager value, extracts only
-the public `SITE_KEY`, and generates `build/config.json` before uploading.
+The contact form's public API URL and Turnstile site key live in
+`src/contactConfig.js` and are bundled with the static site. Both values are
+public by design.
 
 The Turnstile secret key must never be placed in this repository or any browser
 configuration. It stays in Secrets Manager and is read only by the contact API.
@@ -85,9 +84,8 @@ The production backend at `https://api.jcarron.net/contact`:
    outside the frontend's documented length limits.
 4. Apply rate limiting before sending mail through SES.
 
-The frontend intentionally disables submission when no Turnstile site key is
-configured. A client-side widget without server-side verification is not an
-abuse control.
+The browser widget is only the client side of the protection. The backend always
+validates its token with Cloudflare before sending mail.
 
 ## Contributing
 

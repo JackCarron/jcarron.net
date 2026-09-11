@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { loadRuntimeConfig } from '../../runtimeConfig';
+import { CONTACT_API_URL, TURNSTILE_SITE_KEY } from '../../contactConfig';
 import './contactSection.css';
 
 function TurnstileWidget({ onTokenChange, resetKey, siteKey }) {
@@ -65,33 +65,12 @@ const initialFields = {
 };
 
 export function ContactSection() {
-  const [runtimeConfig, setRuntimeConfig] = useState(null);
-  const [configStatus, setConfigStatus] = useState('loading');
   const [fields, setFields] = useState(initialFields);
   const [turnstileToken, setTurnstileToken] = useState('');
   const [status, setStatus] = useState('idle');
   const [statusMessage, setStatusMessage] = useState('');
   const [resetKey, setResetKey] = useState(0);
   const startedAt = useRef(Date.now());
-
-  useEffect(() => {
-    let active = true;
-
-    loadRuntimeConfig()
-      .then((config) => {
-        if (!active) return;
-        setRuntimeConfig(config);
-        setConfigStatus('ready');
-      })
-      .catch(() => {
-        if (!active) return;
-        setConfigStatus('error');
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -104,7 +83,7 @@ export function ContactSection() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!runtimeConfig || !turnstileToken || status === 'submitting') {
+    if (!turnstileToken || status === 'submitting') {
       setStatusMessage('Please complete the security check before sending.');
       return;
     }
@@ -113,7 +92,7 @@ export function ContactSection() {
     setStatusMessage('');
 
     try {
-      const response = await fetch(runtimeConfig.contactApiUrl, {
+      const response = await fetch(CONTACT_API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -220,24 +199,13 @@ export function ContactSection() {
           <TurnstileWidget
             onTokenChange={handleTokenChange}
             resetKey={resetKey}
-            siteKey={runtimeConfig?.turnstileSiteKey}
+            siteKey={TURNSTILE_SITE_KEY}
           />
-          {configStatus !== 'ready' && (
-            <p className="form-config-message" role="status">
-              {configStatus === 'loading'
-                ? 'Loading secure contact form…'
-                : 'The secure form is unavailable right now. Please connect with me on LinkedIn.'}
-            </p>
-          )}
           <div className="form-actions">
             <button
               className="button button-primary"
               type="submit"
-              disabled={
-                configStatus !== 'ready' ||
-                !turnstileToken ||
-                status === 'submitting'
-              }
+              disabled={!turnstileToken || status === 'submitting'}
             >
               {status === 'submitting' ? 'Sending…' : 'Send message'}
             </button>
